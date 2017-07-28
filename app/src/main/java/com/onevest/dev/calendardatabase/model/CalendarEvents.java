@@ -5,6 +5,9 @@ public class CalendarEvents {
     private long eventStartTime;
     private long eventEndTime;
 
+    public CalendarEvents() {
+    }
+
     public String getEventTitle() {
         return eventTitle;
     }
