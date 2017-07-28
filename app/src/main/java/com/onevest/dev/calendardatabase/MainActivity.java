@@ -8,8 +8,11 @@ import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.RecyclerView;
 
 public class MainActivity extends AppCompatActivity {
+
+    private RecyclerView recyclerView;
 
     protected String[] PERMISSIONS = {Manifest.permission.READ_CALENDAR};
 
@@ -21,6 +24,8 @@ public class MainActivity extends AppCompatActivity {
         if (!hasPermissions(this, PERMISSIONS)) {
             requestPermissions();
         }
+
+        recyclerView = (RecyclerView) findViewById(R.id.recycler);
 
     }
 
