@@ -93,14 +93,31 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     }
 
     public int getEventsCount() {
-        return 0;
+        String countQuery = "SELECT * FROM " + TB_NAME;
+        SQLiteDatabase db = getReadableDatabase();
+        Cursor cursor = db.rawQuery(countQuery, null);
+        cursor.close();
+        return cursor.getCount();
     }
 
     public int updateEvent(CalendarEvents events) {
-        return 0;
+        SQLiteDatabase db = getWritableDatabase();
+
+        ContentValues values = new ContentValues();
+        values.put(EVENT_ID, events.getEventId());
+        values.put(EVENT_TITLE, events.getEventTitle());
+        values.put(EVENT_START, events.getEventStartTime());
+        values.put(EVENT_END, events.getEventEndTime());
+
+        return db.update(TB_NAME, values, EVENT_ID + "=?",
+                new String[] {String.valueOf(events.getEventId())});
     }
 
     public void deleteEvent(CalendarEvents events) {
+        SQLiteDatabase db = getWritableDatabase();
+        db.delete(TB_NAME, EVENT_ID + " =? ",
+                new String[] {String.valueOf(events.getEventId())});
 
+        db.close();
     }
 }
