@@ -9,10 +9,12 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
+import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
 
     private RecyclerView recyclerView;
+    private TextView noEventTV;
 
     protected String[] PERMISSIONS = {Manifest.permission.READ_CALENDAR};
 
@@ -26,6 +28,7 @@ public class MainActivity extends AppCompatActivity {
         }
 
         recyclerView = (RecyclerView) findViewById(R.id.recycler);
+        noEventTV = (TextView) findViewById(R.id.noEventTV);
 
     }
 
