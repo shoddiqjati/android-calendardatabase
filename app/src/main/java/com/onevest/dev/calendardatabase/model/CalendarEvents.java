@@ -7,6 +7,9 @@ public class CalendarEvents {
     private long eventStartTime;
     private long eventEndTime;
 
+    public CalendarEvents() {
+    }
+
     public CalendarEvents(int eventId, String eventTitle, long eventStartTime, long eventEndTime) {
         this.eventId = eventId;
         this.eventTitle = eventTitle;

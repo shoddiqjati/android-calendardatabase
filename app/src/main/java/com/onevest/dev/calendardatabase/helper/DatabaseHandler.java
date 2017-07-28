@@ -8,6 +8,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 import com.onevest.dev.calendardatabase.model.CalendarEvents;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class DatabaseHandler extends SQLiteOpenHelper {
@@ -66,14 +67,29 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 
         CalendarEvents event = new CalendarEvents(cursor.getInt(0),
                 cursor.getString(1),
-                cursor.getInt(2),
-                cursor.getInt(3));
+                cursor.getLong(2),
+                cursor.getLong(3));
         cursor.close();
         return event;
     }
 
     public List<CalendarEvents> getAllEvents() {
-        return null;
+        List<CalendarEvents> list = new ArrayList<>();
+        String selectQuery = "SELECT * FROM " + TB_NAME;
+        SQLiteDatabase db = getReadableDatabase();
+        Cursor cursor = db.rawQuery(selectQuery, null);
+        while (cursor.moveToNext()) {
+            CalendarEvents event = new CalendarEvents();
+            event.setEventId(cursor.getInt(0));
+            event.setEventTitle(cursor.getString(1));
+            event.setEventStartTime(cursor.getLong(2));
+            event.setEventEndTime(cursor.getLong(3));
+            list.add(event);
+        }
+
+        cursor.close();
+
+        return list;
     }
 
     public int getEventsCount() {
