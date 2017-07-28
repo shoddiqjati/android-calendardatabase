@@ -1,11 +1,25 @@
 package com.onevest.dev.calendardatabase.model;
 
 public class CalendarEvents {
+
+    private int eventId;
     private String eventTitle;
     private long eventStartTime;
     private long eventEndTime;
 
-    public CalendarEvents() {
+    public CalendarEvents(int eventId, String eventTitle, long eventStartTime, long eventEndTime) {
+        this.eventId = eventId;
+        this.eventTitle = eventTitle;
+        this.eventStartTime = eventStartTime;
+        this.eventEndTime = eventEndTime;
+    }
+
+    public int getEventId() {
+        return eventId;
+    }
+
+    public void setEventId(int eventId) {
+        this.eventId = eventId;
     }
 
     public String getEventTitle() {
