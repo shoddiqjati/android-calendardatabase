@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Calendar Database</string>
+    <string name="icon_content_desc">icon</string>
 </resources>
