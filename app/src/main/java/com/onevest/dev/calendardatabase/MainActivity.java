@@ -9,12 +9,16 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
+import android.view.View;
 import android.widget.TextView;
+
+import com.onevest.dev.calendardatabase.adapters.EventsAdapter;
 
 public class MainActivity extends AppCompatActivity {
 
     private RecyclerView recyclerView;
     private TextView noEventTV;
+    private EventsAdapter adapter;
 
     protected String[] PERMISSIONS = {Manifest.permission.READ_CALENDAR};
 
@@ -29,7 +33,16 @@ public class MainActivity extends AppCompatActivity {
 
         recyclerView = (RecyclerView) findViewById(R.id.recycler);
         noEventTV = (TextView) findViewById(R.id.noEventTV);
+        adapter = new EventsAdapter(this);
 
+        try {
+            recyclerView.setAdapter(adapter);
+            recyclerView.setVisibility(View.VISIBLE);
+            noEventTV.setVisibility(View.GONE);
+        } catch (NullPointerException e) {
+            noEventTV.setVisibility(View.VISIBLE);
+            recyclerView.setVisibility(View.GONE);
+        }
     }
 
     private boolean hasPermissions(Context context, String[] permissions) {
